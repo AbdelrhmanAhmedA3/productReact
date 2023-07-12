@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
 import reportWebVitals from './reportWebVitals';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createHashRouter } from 'react-router-dom';
 // file css
   import 'bootstrap/dist/css/bootstrap.min.css'
   import '@fortawesome/fontawesome-free/css/all.min.css'
@@ -15,7 +15,7 @@ import Product from './components/product/Product';
 
 // file js
 
-const router = createBrowserRouter([
+const router = createHashRouter ([
   {path:'', element: <Login />},
   {path:'login', element: <Login />},
   {path:'product', element: <Product />},
