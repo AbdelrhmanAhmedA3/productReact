@@ -23,6 +23,25 @@
         background-color: rgba(0, 0, 0, 0.078);
       }
   }
+  .newStyle2{
+    transition: .3s;
+    background: #dcffdd;
+    color: #4ed941;
+    width: 36px;
+      height: 36px;
+      position: relative;
+      &:hover{
+        background-color: rgba(0, 0, 0, 0.164);
+      }
+      &:active{
+        background-color: rgba(0, 0, 0, 0.078);
+      }
+      .count{
+        width: 30px;
+        height: 30px;
+
+      }
+  }
   .card:last-child{
     border: 0 !important;
   }
@@ -59,4 +78,3 @@
   
   
      }
-  

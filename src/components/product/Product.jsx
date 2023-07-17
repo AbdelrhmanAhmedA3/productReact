@@ -9,33 +9,49 @@ import axios from 'axios';
 
 class Product extends Component {
 
+
+
     async getProduct(){
         let response = await axios.get('https://dummyjson.com/products')
         let productsList = response.data.products;
-        let copyProductList = response.data.products;
-        console.log(productsList);
+
+
+        for(let element of productsList ){
+
+          element['cartCount'] = 0;
+          
+        }
+        
+        let copyProductList = [...productsList];
         this.setState({productsList});
         this.setState({copyProductList});
     }
 
 
-deleteItem = (id) =>{
-
-  let i = this.state.productsList.findIndex(item => item.id === id)
-    this.state.productsList.splice(i, 1)
-    this.setState(this.state.productsList)
-
-}
-
-serachKey = (val) => {
-    let newArryList = this.state.copyProductList.filter((element) =>
-    element.title
+    
+    serachKey = val => {
+      let newArryList = this.state.copyProductList.filter((element) =>
+      element.title
       .toLowerCase()
       .includes(val.toLowerCase().trim())
-    );
-    this.setState({productsList: newArryList})
-}
+      );
+      this.setState({productsList: newArryList})
+      
+    }
 
+    updateStock = (prod , x)=>{
+      let myIndex = this.state.productsList.indexOf(prod);
+      let productsList = [...this.state.productsList]
+      productsList[myIndex].stock--
+      productsList[myIndex].cartCount++
+      this.setState({productsList})
+    }
+    
+    deleteItem = id => {
+      let productsList = this.state.copyProductList.filter((item, index) => item.id !== id)
+        this.setState({productsList}) 
+        this.setState({copyProductList: productsList}) 
+    }
 
 
 state = {
@@ -49,7 +65,6 @@ componentDidMount(){
 
     render() {
         return <>
-        
     <div className="container text-center my-3">
       <div className="row m-2 m-sm-0">
         <div className="col-12 col-sm p-0 d-flex  align-items-center ">
@@ -79,7 +94,9 @@ componentDidMount(){
 
         {this.state.productsList.map((product)=>{return <Card productsList={product} 
         deleteItem={this.deleteItem}
-        key={product.id}/>})}
+        key={product.id}  
+        update={this.updateStock}
+        />})}
         
 </div>
 

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './card.scss'
 class Card extends Component {
-    render() {
-
-        let {productsList,deleteItem} = this.props;
-
+  render() {  
+      
+    
+    let {productsList,deleteItem,update} = this.props;
+    
 
      
         
@@ -35,13 +36,22 @@ class Card extends Component {
                     </p>
                 <p className="card-text"><small className="text-body-stock">
                     {productsList.stock}
-                     <strong>in stock</strong></small></p>
+                     <strong> in stock</strong></small></p>
               </div>
             </div>
             <div className="row col-sm-4 col-12 ">
-              <div className="col-12 d-flex justify-content-sm-center mb-sm-4 order-2 order-sm-0">
-                <button onClick={(e) => deleteItem(productsList.id) }  className="rounded newStyle shadow-none border-0"  >
+              <div className="col-12 gap-3 d-flex justify-content-sm-center mb-sm-4 order-2 order-sm-0">
+                <button onClick={() => deleteItem(productsList.id) }  className="rounded newStyle shadow-none border-0"  >
                 <i className="fa-solid fa-trash"></i> 
+                </button>
+                <button onClick={()=> update(productsList )} disabled={(productsList.stock === 0 )? "disabled"  : ""} 
+                className={`rounded newStyle2 shadow-none border-0 position-relative  `} >
+                <i class="fa-solid fa-cart-plus"></i>
+                <div className={` ${productsList.cartCount > 0 ? "d-flex" : "d-none"}`}>
+                  <span class="count d-flex justify-content-center align-items-center 
+                  position-absolute top-0 start-100 translate-middle badge border border-4 border-white rounded-circle bg-danger p-2">
+                    <span >{productsList.cartCount}</span></span>
+                </div>
                 </button>
               </div>
               <div className="col-12 border-sm-start border-start border-sm-none mb-5 mb-sm-0 text-start text-sm-center order-1 fs-xs">
@@ -49,7 +59,7 @@ class Card extends Component {
                     {Math.round(productsList.discountPercentage) + '% OFF'}
                      </small></p>
                 <p className="card-text fs-6 "><small className="text-dic"><strong>
-                    {productsList.price}
+                    {productsList.price+` $`}
                     </strong></small></p>
               </div>
             </div>

@@ -20,9 +20,12 @@ class Login extends Component {
                 <label htmlFor="password">Password</label>
                 <div className='position-relative'>
                  <input id='password' type="password" className="form-control pe-5" placeholder="password" aria-label="Username" />
-                   <span className="input-group-text position-absolute top-0 end-0 h-100 "><i className=" fa-solid fa-eye-slash"></i></span>
+                   <span className="input-group-text position-absolute top-0 end-0 h-100 "><i className=" fa-solid fa-eye-slash"></i>
+                   </span>
                 </div>
-            <button className='btn btn-danger p-0'><Link className='py-2 px-4 link-underline link-underline-opacity-0 text-white w-100 h-100 d-flex justify-content-center' to="/Product">Login</Link></button>
+            <button className='btn btn-danger p-0'>
+              <Link className='py-2 px-4 link-underline link-underline-opacity-0 text-white w-100 h-100 d-flex justify-content-center'
+               to="/Product">Login</Link></button>
             </div>
           </form>
         </div>
