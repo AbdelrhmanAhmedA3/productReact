@@ -41,9 +41,40 @@ class Card extends Component {
             </div>
             <div className="row col-sm-4 col-12 ">
               <div className="col-12 gap-3 d-flex justify-content-sm-center mb-sm-4 order-2 order-sm-0">
-                <button onClick={() => deleteItem(productsList.id) }  className="rounded newStyle shadow-none border-0"  >
+                {/* first button delet */}
+                <div>
+                <button type="button" className="rounded newStyle shadow-none border-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 <i className="fa-solid fa-trash"></i> 
                 </button>
+
+                <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div className="modal-dialog">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h1 className="modal-title fs-5" id="staticBackdropLabel">{productsList.title}</h1>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div className="modal-body  bg-delete">
+                      Do you want to Delete this real product
+                        <strong></strong>
+                      </div>
+                      <div className="modal-footer">
+                      <button onClick={() => deleteItem(productsList.id) } data-bs-dismiss="modal" className="rounded bg-delete p-2 shadow-none border-0"  >
+                          <b>Delet</b>
+                      </button> 
+                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+                {/* first button delet */}
+
+                {/* 
+                <button onClick={() => deleteItem(productsList.id) }  className="rounded newStyle shadow-none border-0"  >
+                <i className="fa-solid fa-trash"></i> 
+                </button> 
+                */}
                 <button onClick={()=> update(productsList )} disabled={(productsList.stock === 0 )? "disabled"  : ""} 
                 className={`rounded newStyle2 shadow-none border-0 position-relative  `} >
                 <i class="fa-solid fa-cart-plus"></i>

@@ -12,14 +12,18 @@ import { RouterProvider, createHashRouter } from 'react-router-dom';
 import 'bootstrap/dist/js/bootstrap.bundle'
 import Login from './components/login/Login';
 import Product from './components/product/Product';
+import App from './App';
 
 // file js
 
 const router = createHashRouter ([
-  {path:'', element: <Login />},
-  {path:'login', element: <Login />},
-  {path:'product', element: <Product />},
-  {path:'*', element: <Login />},
+  
+  {path:'', element: <App /> , children:[
+    {path:'', element: <Login />},
+    {path:'login', element: <Login />},
+    {path:'product', element: <Product />},
+    {path:'*', element: <Login />},
+  ]},
 
 ])
 
